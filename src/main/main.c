@@ -30,6 +30,7 @@
 #include "drivers/accgyro/accgyro_fake.h"
 #include "rx/rx.h"
 #include "rx/msp.h"
+#include "drivers/pwm_output.h"
 #include <math.h>
 
 void run(void);
@@ -66,6 +67,9 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
 
             rxMspFrameReceive(rcData, 4);
         }
+
+        pwmOutputPort_t* motors = pwmGetMotors();
+        printf("M1: %6f M2: %6f M3: %6f M4: %6f\n", motors[0].pulseScale, motors[1].pulseScale, motors[2].pulseScale, motors[3].pulseScale);
 
         scheduler();
         processLoopback();

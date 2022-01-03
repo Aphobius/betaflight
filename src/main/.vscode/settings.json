@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "motor.h": "c",
+        "pwm_output.h": "c",
+        "cmath": "c"
+    }
+}
