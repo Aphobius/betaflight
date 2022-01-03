@@ -58,6 +58,7 @@ const timerHardware_t timerHardware[1]; // unused
 #include "target/SITL/udplink.h"
 
 uint32_t SystemCoreClock;
+int16_t simMotorsPwm[4];
 
 static fdm_packet fdmPkt;
 static servo_packet pwmPkt;
