@@ -27,6 +27,11 @@
 
 #include "scheduler/scheduler.h"
 
+#include "drivers/accgyro/accgyro_fake.h"
+#include "rx/rx.h"
+#include "rx/msp.h"
+#include <math.h>
+
 void run(void);
 
 int main(void)
@@ -40,11 +45,30 @@ int main(void)
 
 void FAST_CODE FAST_CODE_NOINLINE run(void)
 {
-    while (true) {
+    long long counter = 0;
+    double angle = 0;
+    uint16_t rcData[4];
+
+    while (true)
+    {
+        angle += 0.0001;
+        double xGyro = sin(angle) * 8196;
+        double yGyro = cos(angle) * 8196;
+        double zGyro = -sin(angle) * 8196;
+        fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
+
+        if (counter++ % 100 == 0)
+        {
+            rcData[0] = 1500 + sin(angle) * 500;
+            rcData[1] = 1500 + cos(angle) * 500;
+            rcData[3] = 1500 - sin(angle) * 500;
+            rcData[2] = 1500;
+
+            rxMspFrameReceive(rcData, 0);
+        }
+
         scheduler();
         processLoopback();
-#ifdef SIMULATOR_BUILD
         delayMicroseconds_real(50); // max rate 20kHz
-#endif
     }
 }

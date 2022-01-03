@@ -16,7 +16,7 @@
 #
 
 # The target to build, see VALID_TARGETS below
-TARGET    ?= STM32F405
+TARGET    ?= SITL
 
 # Compile-time options
 OPTIONS   ?=
