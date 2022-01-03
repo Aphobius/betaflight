@@ -56,7 +56,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         double yGyro = 0;
         double zGyro = 0;
 
-        if (counter < 100000)
+        if (counter > 100000)
         {
             angle += 0.0001;
             xGyro = sin(angle) * 8196;
@@ -66,13 +66,24 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         
         fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
 
-        if (counter > 100000 && counter % 100 == 0)
+        if (counter % 100 == 0)
         {
-            rcData[0] = 1500 + sin(angle) * 500;
-            rcData[1] = 1500 + cos(angle) * 500;
-            rcData[3] = 1500 - sin(angle) * 500;
-            rcData[2] = 1500;
-            rcData[4] = 1500;
+            if (counter > 100000)
+            {
+                rcData[0] = 1500;
+                rcData[1] = 1500;
+                rcData[3] = 1500;
+                rcData[2] = 988;
+                rcData[4] = 1000;
+            }
+            else
+            {
+                rcData[0] = 1500 + sin(angle) * 500;
+                rcData[1] = 1500 + cos(angle) * 500;
+                rcData[3] = 1500 - sin(angle) * 500;
+                rcData[2] = 988;
+                rcData[4] = 1500;
+            }
 
             rxMspFrameReceive(rcData, 5);
         }
