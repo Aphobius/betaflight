@@ -68,7 +68,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
 
         if (counter % 100 == 0)
         {
-            if (counter > 100000)
+            if (counter < 100000)
             {
                 rcData[0] = 1500;
                 rcData[1] = 1500;
