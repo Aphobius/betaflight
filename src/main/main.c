@@ -64,7 +64,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
             rcData[3] = 1500 - sin(angle) * 500;
             rcData[2] = 1500;
 
-            rxMspFrameReceive(rcData, 0);
+            rxMspFrameReceive(rcData, 4);
         }
 
         scheduler();
