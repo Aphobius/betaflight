@@ -79,7 +79,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
             rcData[0] = 1500 - sin(angle) * 0;
             rcData[1] = 1500 - cos(angle) * 0;
             rcData[3] = 1500 + sin(angle) * 0;
-            rcData[2] = 1500;
+            rcData[2] = 1100;
             rcData[4] = 1500;
         }
         else
