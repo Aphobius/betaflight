@@ -66,35 +66,32 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         
         fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
 
-        if (counter % 10 == 0)
+        if (counter < 100000)
         {
-            if (counter < 100000)
-            {
-                rcData[0] = 1500;
-                rcData[1] = 1500;
-                rcData[3] = 1500;
-                rcData[2] = 988;
-                rcData[4] = 1000;
-            }
-            else if (counter > 110000)
-            {
-                rcData[0] = 1500;
-                rcData[1] = 1500;
-                rcData[3] = 1500;
-                rcData[2] = 1500;
-                rcData[4] = 1500;
-            }
-            else
-            {
-                rcData[0] = 1500 + sin(angle) * 500;
-                rcData[1] = 1500 + cos(angle) * 500;
-                rcData[3] = 1500 - sin(angle) * 500;
-                rcData[2] = 988;
-                rcData[4] = 1500;
-            }
-
-            rxMspFrameReceive(rcData, 5);
+            rcData[0] = 1500;
+            rcData[1] = 1500;
+            rcData[3] = 1500;
+            rcData[2] = 988;
+            rcData[4] = 1000;
         }
+        else if (counter > 110000)
+        {
+            rcData[0] = 1500;
+            rcData[1] = 1500;
+            rcData[3] = 1500;
+            rcData[2] = 1500;
+            rcData[4] = 1500;
+        }
+        else
+        {
+            rcData[0] = 1500 + sin(angle) * 500;
+            rcData[1] = 1500 + cos(angle) * 500;
+            rcData[3] = 1500 - sin(angle) * 500;
+            rcData[2] = 988;
+            rcData[4] = 1500;
+        }
+
+        rxMspFrameReceive(rcData, 5);
 
         int16_t* motors = &simMotorsPwm;
         printf("M1: %6d M2: %6d M3: %6d M4: %6d\n", motors[0], motors[1], motors[2], motors[3]);
