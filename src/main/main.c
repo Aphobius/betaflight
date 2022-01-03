@@ -66,7 +66,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         
         fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
 
-        if (counter % 100 == 0)
+        if (counter % 10 == 0)
         {
             if (counter < 100000)
             {
