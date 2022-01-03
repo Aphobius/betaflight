@@ -76,17 +76,17 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         }
         else if (counter > 110000)
         {
-            rcData[0] = 1500 + sin(angle) * 10;
-            rcData[1] = 1500 + cos(angle) * 10;
-            rcData[3] = 1500 - sin(angle) * 10;
-            rcData[2] = 1500;
+            rcData[0] = 1500 - sin(angle) * 10;
+            rcData[1] = 1500 - cos(angle) * 10;
+            rcData[3] = 1500 + sin(angle) * 10;
+            rcData[2] = 988;
             rcData[4] = 1500;
         }
         else
         {
-            rcData[0] = 1500 + sin(angle) * 10;
-            rcData[1] = 1500 + cos(angle) * 10;
-            rcData[3] = 1500 - sin(angle) * 10;
+            rcData[0] = 1500 - sin(angle) * 10;
+            rcData[1] = 1500 - cos(angle) * 10;
+            rcData[3] = 1500 + sin(angle) * 10;
             rcData[2] = 988;
             rcData[4] = 1500;
         }
