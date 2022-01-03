@@ -52,24 +52,35 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
 
     while (true)
     {
-        angle += 0.0001;
-        double xGyro = sin(angle) * 8196;
-        double yGyro = cos(angle) * 8196;
-        double zGyro = -sin(angle) * 8196;
+        double xGyro = 0;
+        double yGyro = 0;
+        double zGyro = 0;
+
+        if (counter < 100000)
+        {
+            angle += 0.0001;
+            xGyro = sin(angle) * 8196;
+            yGyro = cos(angle) * 8196;
+            zGyro = -sin(angle) * 8196;
+        }
+        
         fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
 
-        if (counter++ % 100 == 0)
+        if (counter > 100000 && counter % 100 == 0)
         {
             rcData[0] = 1500 + sin(angle) * 500;
             rcData[1] = 1500 + cos(angle) * 500;
             rcData[3] = 1500 - sin(angle) * 500;
             rcData[2] = 1500;
+            rcData[4] = 1500;
 
-            rxMspFrameReceive(rcData, 4);
+            rxMspFrameReceive(rcData, 5);
         }
 
         int16_t* motors = &simMotorsPwm;
         printf("M1: %6d M2: %6d M3: %6d M4: %6d\n", motors[0], motors[1], motors[2], motors[3]);
+        
+        counter++;
 
         scheduler();
         processLoopback();
