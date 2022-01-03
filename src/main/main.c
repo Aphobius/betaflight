@@ -59,9 +59,9 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         if (counter > 100000)
         {
             angle += 0.0001;
-            xGyro = sin(angle) * 8196;
-            yGyro = cos(angle) * 8196;
-            zGyro = -sin(angle) * 8196;
+            xGyro = sin(angle) * 1024;
+            yGyro = cos(angle) * 1024;
+            zGyro = -sin(angle) * 1024;
         }
         
         fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
