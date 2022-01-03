@@ -143,6 +143,7 @@
 // belows are internal stuff
 
 extern uint32_t SystemCoreClock;
+extern int16_t simMotorsPwm[4];
 
 typedef enum
 {
