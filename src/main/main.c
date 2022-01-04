@@ -56,7 +56,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         double yGyro = 0;
         double zGyro = 0;
 
-        if (counter > 110000)
+        if (counter > 60000)
         {
             angle += 0.001;
             xGyro = sin(angle) * 32;
@@ -66,7 +66,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         
         fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
 
-        if (counter < 100000)
+        if (counter < 50000)
         {
             rcData[0] = 1500;
             rcData[1] = 1500;
@@ -74,7 +74,7 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
             rcData[2] = 988;
             rcData[4] = 1000;
         }
-        else if (counter > 110000)
+        else if (counter > 60000)
         {
             rcData[0] = 1500 - sin(angle) * 0;
             rcData[1] = 1500 - cos(angle) * 0;
