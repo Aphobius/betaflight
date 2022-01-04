@@ -56,13 +56,13 @@ void FAST_CODE FAST_CODE_NOINLINE run(void)
         double yGyro = 0;
         double zGyro = 0;
 
-        // if (counter > 110000)
-        // {
-        //     angle += 0.001;
-        //     xGyro = sin(angle) * 32;
-        //     yGyro = cos(angle) * 32;
-        //     zGyro = -sin(angle) * 32;
-        // }
+        if (counter > 110000)
+        {
+            angle += 0.001;
+            xGyro = sin(angle) * 32;
+            yGyro = cos(angle) * 32;
+            zGyro = -sin(angle) * 32;
+        }
         
         fakeGyroSet(fakeGyroDev, xGyro, yGyro, zGyro);
 
